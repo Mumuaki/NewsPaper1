@@ -20,11 +20,6 @@ class Author(models.Model):
                               + post_comment_rating['comment_rating_sum'])
         self.save()
 
-
-def __str__(self):
-    return self.user.username
-
-
 '''Суммарный рейтинг каждой статьи автора умножается на 3
     # post_rating = sum(post.rating for post in self.post_set.all()) * 3
     # # Суммарный рейтинг всех комментариев автора
@@ -35,6 +30,10 @@ def __str__(self):
     # self.rating = post_rating + comment_rating + post_comment_rating
     # self.save()
 '''
+
+
+def __str__(self):
+    return self.user.username
 
 
 class Category(models.Model):
