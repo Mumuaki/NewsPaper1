@@ -1,0 +1,40 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+****
+{% endblock title %}
+
+{% block content %}
+   <h1>Все новости</h1>
+   <h3>{{ time_now|date:'d M Y' }}</h3>
+   <!-- Если в переменной next_sale будет None,
+   то выведется указанный в фильтре текст -->
+   <h3> {{ next_sale|default_if_none:"Чуть позже сообщим о суперНовости!" }} </h3>
+    <h3> Общее количество новостей:  плюс/минус {{ news|length }}, но это не точно :)</h3>
+
+   <hr>
+   {% if news %}
+       <table width="100%" style ="margin-top: 35px">
+           <tr>
+               <th width="300">ЗАГОЛОВОК</th>
+               <td> | </td>
+               <th width="150">ОПУБЛИКОВАНО</th>
+               <td> | </td>
+               <th width="800">СОДЕРЖАНИЕ</th>
+           </tr>
+
+           {% for i in news %}
+           <tr class = "table-group-divider">
+               <td>{{ i.title|truncatewords:8 }}</td>
+               <td> | </td>
+               <td>{{ i.created_at|date:"d M Y" }}</td>
+               <td> | </td>
+               <td>{{ i.content|truncatewords:20 }}</td>
+           </tr>
+           {% endfor %}
+
+       </table>
+   {% else %}
+       <h2>Новости еще зреют!</h2>
+   {% endif %}
+{% endblock content %}

@@ -66,7 +66,7 @@ print(f'{ba_rating}')
 best_author = Author.objects.order_by('-author_rating')[:1]
 if best_author:
     username = best_author[0].author_name.username
-    print(f'{username}, {best_author[0].author_rating}')
+    print(f'Best user: {username}, with rating: {best_author[0].author_rating}')
 else:
     print("No authors found.")
 
